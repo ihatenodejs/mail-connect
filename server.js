@@ -1,9 +1,52 @@
 const express = require('express');
+const fs = require('fs');
+const rateLimit = require('express-rate-limit');
 const Docker = require('dockerode');
+const validator = require('validator');
 
 const docker = new Docker({ socketPath: '/var/run/docker.sock' });
 const app = express();
 app.use(express.json());
+
+// Rate limiting
+
+let rateLimitConfig = {};
+try {
+  const data = fs.readFileSync('./ratelimit.json', 'utf8');
+  rateLimitConfig = JSON.parse(data);
+} catch (err) {
+  console.error('Error loading rate limit config:', err);
+}
+
+function createLimiter(options) {
+  return rateLimit({
+    windowMs: options.windowMs,
+    max: options.max,
+    message: "Too many requests, please try again another time.",
+  });
+}
+
+if (rateLimitConfig['/list']) {
+  app.use('/list', createLimiter(rateLimitConfig['/list']));
+}
+if (rateLimitConfig['/add']) {
+  app.use('/add', createLimiter(rateLimitConfig['/add']));
+}
+
+// Utility fxns
+
+function validateEmail(email) {
+  return typeof email === 'string' && validator.isEmail(email);
+}
+
+const PasswordValidator = require('password-validator');
+const passwordSchema = new PasswordValidator();
+passwordSchema
+  .is().min(8)
+  .is().max(64)
+  .has().letters()
+  .has().digits()
+  .has().not().spaces();
 
 function listAccounts() {
   return new Promise((resolve, reject) => {      
@@ -49,6 +92,8 @@ function listAccounts() {
   });
 }
 
+// Routes
+
 app.get('/list', (req, res) => {
   listAccounts()
     .then(accounts => res.json({ accounts }))
@@ -57,8 +102,8 @@ app.get('/list', (req, res) => {
 
 app.post('/add', (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required." });
+  if (!email || !validateEmail(email) || !password) {
+    return res.status(400).json({ error: "A valid email and password is required." });
   }
   
   const container = docker.getContainer('mailserver');
