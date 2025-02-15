@@ -1,0 +1,19 @@
+{
+  "name": "mail-connect",
+  "module": "server.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "dockerode": "^4.0.4",
+    "express": "^4.21.2"
+  },
+  "trustedDependencies": [
+    "protobufjs"
+  ]
+}

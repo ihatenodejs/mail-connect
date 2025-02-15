@@ -1,0 +1,8 @@
+services:
+  mail-connect:
+    build: .
+    container_name: mail-connect
+    ports:
+      - "6723:3000"
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
