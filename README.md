@@ -13,6 +13,14 @@ mail-connect aims to connect your `docker-mailserver` to *anything* you can imag
 
 We provide an extendable API which interacts with the `setup` utility via a Docker socket. We have implemented a SQLite database with Drizzle ORM for faster polling of users, with strategic caching and updating.
 
+## What this API is NOT
+
+This API is insecure by nature, however not completely. It's meant to be an internal API, and used in frontends which have their own protection systems in place. Think about it... would you like me to direct your mailserver security? I sure hope not...
+
+As such, users who have access to this API are able to create unlimited accounts, and modify anyone's email address. Thus, your code should be the only user of this API. Once again, **do not make this API public**.
+
+This provides more upsides than downsides, as it lets you implement enterprise-level security, or have simple IP-based ratelimits. Basic ratelimits have been added in case this API is abused on accident due to a failure in your system. You can configure this based on your expected traffic (plus a lot more, as sometimes you will get reasonable spikes of traffic).
+
 ## Features
 
 All features marked with an **E** are extended features, and are not a part of the original `setup` utility.
