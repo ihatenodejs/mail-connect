@@ -132,5 +132,8 @@ dist
 
 # extra
 .idea/
+drizzle/
 bun.lockb
+migrate.txt
+db.sqlite3
 
