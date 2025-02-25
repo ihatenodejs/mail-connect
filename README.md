@@ -64,7 +64,7 @@ All features marked with an **E** are extended features, and are not a part of t
 - [X] List emails
 - [X] **E** View individual user details
 - [X] **E** Create email from file
-- [ ] Change password
+- [X] Change password
 - [ ] Delete email
 - [ ] Restrict email
 

@@ -143,15 +143,55 @@ app.post("/accounts/user", async (req: Request, res: Response): Promise<void> =>
   }
 });
 
+app.post("/accounts/update/password", async (req: Request, res: Response): Promise<void> => {
+  const { email, password } = req.body;
+
+  if (!validateEmail(email)) {
+    console.log("Error updating password: Invalid email format");
+    res.status(400).json({ error: "Invalid email format" });
+    return;
+  }
+
+  const exec = await container.exec({
+    Cmd: ["setup", "email", "update", email, password],
+    AttachStdout: true,
+    AttachStderr: true,
+  });
+  const stream = await new Promise<NodeJS.ReadableStream>((resolve, reject) => {
+    exec.start({}, (err, stream) => {
+      if (err || !stream) {
+        reject(err || new Error("Exec stream is undefined"));
+      } else {
+        resolve(stream);
+      }
+    });
+  });
+  let output = "";
+  stream.on("data", (chunk: Buffer) => {
+    output += chunk.toString();
+  });
+  await new Promise<void>((resolve) => stream.on("end", resolve));
+  console.log("Docker output (update password):\n", output);
+  // detect errors
+  if (/ERROR/i.test(output)) {
+    console.log(`Error during migration: Password reset failed`);
+    res.status(500).json({ error: "Error during reset" });
+    return;
+  } else {
+    console.log(`Reset password for account: ${email}`);
+    res.json({ success: true });
+    return;
+  }
+});
+
 // TODO: The wait upon account creation needs to be more adaptive
 app.post("/accounts/add", async (req: Request, res: Response): Promise<void> => {
   const { email, password, migrate } = req.body;
   let failureReason = "";
 
   if (!validateEmail(email)) {
-    failureReason = "Invalid email format";
-    console.log(`Error adding account: ${failureReason}`);
-    res.status(400).json({ error: failureReason });
+    console.log("Error adding account: Invalid email format");
+    res.status(400).json({ error: "Invalid email format" });
     return;
   }
 
