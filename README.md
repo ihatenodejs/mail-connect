@@ -2,6 +2,7 @@
 
 [![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/docker.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=docker.yml)
 [![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/ci.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=ci.yml)
+[![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/bump.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=bump.yml)
 
 API bridge for docker-mailserver
 
