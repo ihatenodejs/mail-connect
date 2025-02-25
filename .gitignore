@@ -132,6 +132,7 @@ dist
 
 # extra
 .idea/
+bun.lock
 drizzle/
 bun.lockb
 migrate.txt
