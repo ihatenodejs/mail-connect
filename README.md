@@ -15,7 +15,7 @@ We provide an extendable API which interacts with the `setup` utility via a Dock
 
 ## What this API is NOT
 
-This API is insecure by nature, however not completely. It's meant to be an internal API, and used in frontends which have their own protection systems in place. Think about it... would you like me to direct your mailserver security? I sure hope not...
+This API is insecure by nature, however not completely. `mail-connect` is intended to be an API which is used internally _only_. The systems connected to this API should have proper protections against abuse. Think about it... would you like me to direct your mailserver security? I sure hope not...
 
 As such, users who have access to this API are able to create unlimited accounts, and modify anyone's email address. Thus, your code should be the only user of this API. Once again, **do not make this API public**.
 
@@ -45,8 +45,10 @@ All features marked with an **E** are extended features, and are not a part of t
    ```bash
    touch migrate.txt # put emails (one per line) which already exist on the server which users can claim
    cp .env.example .env # you don't need to change anything here
-   vim ratelimit.json # optional, customize to your liking
+   vim ratelimit.json # optional, customize to your liking...
    ```
+   
+   **Note:** If you are running mail-connect outside a Docker container (or changing the binds), please change the `MAILCONNECT_ROOT_DIR` to match your environment.
 
 4. **Build and run the container**
 

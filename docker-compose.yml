@@ -1,6 +1,6 @@
 services:
   mail-connect:
-    build: .
+    image: "git.pontusmail.org/librecloud/web:latest"
     container_name: mail-connect
     env_file: ".env"
     ports:
