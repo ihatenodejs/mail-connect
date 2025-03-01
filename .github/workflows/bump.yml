@@ -31,9 +31,11 @@ jobs:
         env:
           USERNAME_GITEA: ${{ secrets.USERNAME_GITEA }}
           TOKEN_GITEA: ${{ secrets.TOKEN_GITEA }}
+          SERVER_URL: ${{ secrets.SERVER_URL }}
         run: |
           git config --global user.name "LibreCloud Actions Bot"
           git config --global user.email "git@pontusmail.org"
+          echo "Connecting to $SERVER_URL"
           git remote set-url origin https://${USERNAME_GITEA}:${TOKEN_GITEA}@git.pontusmail.org/librecloud/mail-connect.git
           git add .
           git commit -m "chore: bump dependencies" || exit 0
