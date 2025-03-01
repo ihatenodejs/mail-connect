@@ -1,8 +1,9 @@
 services:
   mail-connect:
-    image: "git.pontusmail.org/librecloud/web:latest"
+    image: "git.pontusmail.org/librecloud/mail-connect:latest"
     container_name: mail-connect
     env_file: ".env"
+    restart: always
     ports:
       - "6723:3000"
     volumes:
