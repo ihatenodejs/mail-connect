@@ -35,6 +35,7 @@ jobs:
           git config --global user.name "LibreCloud Actions Bot"
           git config --global user.email "git@pontusmail.org"
           git remote set-url origin https://${USERNAME_GITEA}:${TOKEN_GITEA}@git.pontusmail.org/librecloud/mail-connect.git
+          git pull --rebase origin main
           git add .
           git commit -m "chore: bump dependencies" || exit 0
           git push origin main
