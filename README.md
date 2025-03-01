@@ -1,8 +1,7 @@
 # mail-connect
 
-[![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/docker.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=docker.yml)
-[![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/ci.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=ci.yml)
-[![Build Status](https://git.pontusmail.org/librecloud/mail-connect/actions/workflows/bump.yml/badge.svg)](https://git.pontusmail.org/librecloud/mail-connect/actions/?workflow=bump.yml)
+[![Build and Push Docker Image](https://github.com/ihatenodejs/mail-connect/actions/workflows/docker.yml/badge.svg)](https://github.com/ihatenodejs/mail-connect/actions/workflows/docker.yml)
+[![Bump Dependencies](https://github.com/ihatenodejs/mail-connect/actions/workflows/bump.yml/badge.svg)](https://github.com/ihatenodejs/mail-connect/actions/workflows/bump.yml)
 
 API bridge for docker-mailserver
 
