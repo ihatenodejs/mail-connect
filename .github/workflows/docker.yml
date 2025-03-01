@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Log in to Gitea Package Registry
-        run: echo "${{ secrets.PACKAGE_TOKEN }}" | docker login $SERVER_URL -u $USERNAME --password-stdin
+        run: echo "${{ secrets.PACKAGE_TOKEN }}" | docker login "$SERVER_URL" -u "$USERNAME" --password-stdin
         env:
           SERVER_URL: ${{ secrets.SERVER_URL }}
           USERNAME: ${{ secrets.USERNAME }}
