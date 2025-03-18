@@ -8,13 +8,20 @@ const db = drizzle(process.env.DB_FILE_NAME!);
 
 export const getUserAccount = async (req: Request, res: Response): Promise<void> => {
   const { email } = req.body;
-  console.log("[*] Task started\nTASK| getUserAccount\nACC |", email);
+
+  if (!email) {
+    console.log("[!] Error\nTASK| getUserAccount\nERR | Missing email\nACC |", email);
+    res.status(400).json({error: "Missing email"});
+    return
+  }
 
   if (!validateEmail(email)) {
     console.log("[!] Error\nTASK| getUserAccount\nERR | Invalid email format\nACC |", email);
     res.status(400).json({ error: "Invalid email format" });
     return;
   }
+
+  console.log("[*] Task started\nTASK| getUserAccount\nACC |", email);
 
   try {
     const account = await db

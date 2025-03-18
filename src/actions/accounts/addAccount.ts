@@ -6,15 +6,28 @@ import { eq } from "drizzle-orm";
 import fs from "fs/promises";
 import { drizzle } from "drizzle-orm/bun-sqlite";
 import { updateAccountsCache } from "../../utils/updateAccountsCache";
+import { isBannedPrefix } from "../../utils/validators";
 
 const db = drizzle(process.env.DB_FILE_NAME!);
 
 export const addAccount = async (req: Request, res: Response): Promise<void> => {
   const { email, password, migrate } = req.body;
 
+  if (!email || !password) {
+    console.log("[!] Error\nTASK| addAccount\nERR | Missing email or password");
+    res.status(400).json({ error: "Missing email or password" });
+    return;
+  }
+
   if (!validateEmail(email)) {
     console.log("[!] Error\nTASK| addAccount\nERR | Invalid email format");
     res.status(400).json({ error: "Invalid email format" });
+    return;
+  }
+
+  if (await isBannedPrefix(email)) {
+    console.log("[!] Error\nTASK| addAccount\nERR | Banned email prefix\nACC |", email);
+    res.status(400).json({ error: "Banned email prefix" });
     return;
   }
 
@@ -27,6 +40,8 @@ export const addAccount = async (req: Request, res: Response): Promise<void> => 
       const line = data.split("\n").find(l => l.trim() === email);
       if (!line) {
         console.log("[!] Error\nTASK| addAccount (subtask: migrate)\nERR | Account not found in migrate.txt\nACC |", email);
+
+        // A backend error is returned so users do not attempt to abuse the migration form
         res.status(500).json({ error: "Backend error" });
         return;
       } else {

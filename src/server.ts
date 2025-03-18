@@ -33,12 +33,12 @@ app.listen(PORT, () => {
   figlet('mail-connect', (err, data) => {
     if (err) {
       console.log('mail-connect');
-      console.log('Version: 0.1.0');
+      console.log('Version: 0.1.1');
       console.log(`API listening on port ${PORT}\n`);
       console.dir("[!] " + err);
     } else {
       console.log(data);
-      console.log('Version: 0.1.0');
+      console.log('Version: 0.1.1');
       console.log(`API listening on port ${PORT}\n`);
     }
   });
