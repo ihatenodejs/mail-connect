@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/dockerode": "^3.3.35",
+    "@types/dockerode": "^3.3.36",
     "@types/express": "^5.0.1",
     "@types/node": "^22.13.14",
     "@types/validator": "^13.12.3",
