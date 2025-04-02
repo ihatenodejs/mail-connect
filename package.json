@@ -10,7 +10,7 @@
     "@types/bun": "latest",
     "@types/dockerode": "^3.3.37",
     "@types/express": "^5.0.1",
-    "@types/node": "^22.13.16",
+    "@types/node": "^22.13.17",
     "@types/validator": "^13.12.3",
     "drizzle-kit": "^0.30.6"
   },
