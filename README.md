@@ -35,12 +35,13 @@ All features marked with an **E** are extended features, and are not a part of t
    bunx drizzle-kit migrate
    ```
 
-3. **Copy/modify necessary files**
+3. **Copy, move, and modify necessary files**
 
    ```bash
+   mv docker-compose.yml.example docker-compose.yml # depending on your use case, you might have to change some things here
    touch migrate.txt # put emails (one per line) which already exist on the server which users can claim
-   cp .env.example .env # you don't need to change anything here
-   vim ratelimit.json # optional, customize to your liking...
+   mv .env.example .env # you don't need to change anything here
+   mv ratelimit.json.example ratelimit.json # customize to your liking
    ```
 
    **Note:** If you are running mail-connect outside a Docker container (or changing the binds), please change the `MAILCONNECT_ROOT_DIR` to match your environment.
