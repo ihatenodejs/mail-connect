@@ -46,7 +46,7 @@ All features marked with an **E** are extended features, and are not a part of t
    cp .env.example .env # you don't need to change anything here
    vim ratelimit.json # optional, customize to your liking...
    ```
-   
+
    **Note:** If you are running mail-connect outside a Docker container (or changing the binds), please change the `MAILCONNECT_ROOT_DIR` to match your environment.
 
 4. **Build and run the container**
