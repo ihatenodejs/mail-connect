@@ -5,9 +5,19 @@ import { listAccounts } from "./actions/accounts/listAccounts";
 import { getUserAccount } from "./actions/accounts/getUserAccount";
 import { updatePassword } from "./actions/accounts/updatePassword";
 import { addAccount } from "./actions/accounts/addAccount";
+import initialChecks from "./actions/initialChecks";
 
 const app = express();
 app.use(express.json());
+
+console.log("==== SELF CHECK STARTING ====\n");
+const rCResult = initialChecks();
+if (!rCResult) {
+  console.log("\n====   SELF CHECK FAIL   ====");
+  process.exit(1);
+} else {
+  console.log("\n====   SELF CHECK PASS   ====\n");
+}
 
 interface RateLimitOptions {
   windowMs: number;
@@ -35,7 +45,7 @@ app.listen(PORT, () => {
       console.log('mail-connect');
       console.log('Version: 0.1.1');
       console.log(`API listening on port ${PORT}\n`);
-      console.dir("[!] " + err);
+      console.log("[!] " + err);
     } else {
       console.log(data);
       console.log('Version: 0.1.1');
