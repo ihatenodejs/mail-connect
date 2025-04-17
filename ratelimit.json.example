@@ -1,0 +1,10 @@
+{
+  "/list": {
+    "windowMs": 60000,
+    "limit": 20
+  },
+  "/add": {
+    "windowMs": 60000,
+    "limit": 10
+  }
+}

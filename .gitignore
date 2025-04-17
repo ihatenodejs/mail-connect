@@ -137,7 +137,7 @@ drizzle/
 bun.lockb
 migrate.txt
 db.sqlite3
-ratelimit.json.example
+ratelimit.json
 
 # Docker
 docker-compose.yml
