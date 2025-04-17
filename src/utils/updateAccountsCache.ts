@@ -14,4 +14,5 @@ export const updateAccountsCache = async () => {
     .insert(cacheInfo)
     .values({ lastUpdated: Date.now() })
     .onConflictDoUpdate({ target: cacheInfo.id, set: { lastUpdated: Date.now() } });
+  console.log("[+] Accounts cache updated");
 };
