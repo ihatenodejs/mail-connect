@@ -1,6 +1,7 @@
 {
   "name": "mail-connect",
   "module": "src/server.ts",
+  "version": "0.1.2",
   "type": "module",
   "scripts": {
     "start": "bun src/server.js",

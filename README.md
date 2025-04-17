@@ -1,8 +1,6 @@
 # mail-connect
 
-API bridge for docker-mailserver
-
-*mail-connect is still in early beta*
+API bridge for docker-mailserver. **Still in beta.**
 
 ## What is it
 
@@ -12,7 +10,7 @@ We provide an extendable API which interacts with the `setup` utility via a Dock
 
 ## What this API is NOT
 
-This API is insecure by nature, however not completely. `mail-connect` is intended to be an API which is used internally _only_. The systems connected to this API should have proper protections against abuse. Think about it... would you like me to direct your mailserver security? I sure hope not...
+This API is insecure by nature, however not completely. `mail-connect` is intended to be an API which is used internally **only**. The systems connected to this API should have proper protections against abuse. Think about it... would you like me to direct your mailserver security? I sure hope not...
 
 As such, users who have access to this API are able to create unlimited accounts, and modify anyone's email address. Thus, your code should be the only user of this API. Once again, **do not make this API public**.
 
@@ -59,13 +57,13 @@ All features marked with an **E** are extended features, and are not a part of t
 
 ### Email
 
-- [X] Create email
-- [X] List emails
-- [X] **E** View individual user details
-- [X] **E** Create email from file
+- [X] Create account/email
+- [X] List accounts
+- [X] **E** View individual account details
+- [X] **E** Create an account from file
 - [X] Change password
-- [ ] Delete email
-- [ ] Restrict email
+- [X] Delete account/email
+- [ ] Restrict account
 
 ### Alias
 
@@ -113,8 +111,3 @@ All features marked with an **E** are extended features, and are not a part of t
 I plan to implement a *much* more powerful API, when everything else has settled. I will be taking a look at the setup utility itself, and seeing how a more efficient approach can be taken.
 
 Since `docker-mailserver` is built on Dovecot and Postfix, I am confident we can improve this API to be speedy and efficient as ever.
-
-## To-Do
-
-- [ ] Implement aforementioned features
-- [ ] Swagger support
