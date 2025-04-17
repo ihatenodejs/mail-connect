@@ -1,7 +1,5 @@
 # mail-connect
 
-[![Build and Push Docker Image](https://github.com/ihatenodejs/mail-connect/actions/workflows/docker.yml/badge.svg)](https://github.com/ihatenodejs/mail-connect/actions/workflows/docker.yml)
-
 API bridge for docker-mailserver
 
 *mail-connect is still in early beta*
