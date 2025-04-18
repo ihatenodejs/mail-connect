@@ -46,7 +46,7 @@ app.post("/accounts/update/password", updatePassword);
 app.post("/accounts/add", addAccount);
 app.post("/accounts/delete", deleteAccount);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   figlet('mail-connect', (err, data) => {
     if (err) {
